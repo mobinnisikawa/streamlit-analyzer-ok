@@ -1,5 +1,15 @@
 import streamlit as st
 import spacy
+import subprocess
+import sys
+
+# SpaCyのモデルがなければインストール（Streamlit Cloud対応）
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
+
 import pandas as pd
 
 st.title("英文テキスト文法解析アプリ")
