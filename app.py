@@ -1,5 +1,7 @@
 import streamlit as st
 import spacy
+import pandas as pd
+
 st.title("英文テキスト文法解析アプリ")
 
 st.markdown("""
@@ -33,9 +35,22 @@ if st.button("文法解析を実行"):
 
         doc = nlp(text)
 
-        st.subheader("📌 単語と品詞")
-        for token in doc:
-            st.write(f"{token.text} → {token.pos_}（{token.tag_}） | 係り先: {token.head.text}")
+        import pandas as pd  # ←ファイルの一番上に import 済みなら不要
+
+# 解析結果を表形式にする
+results = []
+for token in doc:
+    results.append({
+        "単語": token.text,
+        "品詞": token.pos_,
+        "詳細タグ": token.tag_,
+        "係り先": token.head.text,
+        "依存関係": token.dep_
+    })
+
+st.subheader("🔎 文法解析の表")
+st.dataframe(pd.DataFrame(results), use_container_width=True)
+
 
         st.subheader("📎 構文依存関係")
         st.graphviz_chart(spacy.displacy.render(doc, style="dep", options={"compact": True}, jupyter=False))
