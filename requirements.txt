@@ -1,6 +1,6 @@
 requirements.txt
 streamlit
 pandas
-spacy-nightly==3.5.0.dev0
+spacy==3.5.3
 numpy<1.25
 
