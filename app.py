@@ -14,7 +14,13 @@ st.set_page_config(page_title="英文法解析", layout="centered")
 
 st.title("📘 自然な英文法解析アプリ（スマホ対応）")
 
-text = st.text_area("英文を入力してください：", height=150, placeholder="例：I saw a man with a telescope.")
+text = st.text_area(
+    "英文を入力してください",
+    height=120,
+    placeholder="例：I saw a man with a telescope.",
+    help="文法的に分析したい英語の文を入力してください（複数行もOK）"
+)
+
 
 if st.button("文法解析を実行"):
     if not text.strip():
