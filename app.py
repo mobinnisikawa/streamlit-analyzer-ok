@@ -38,12 +38,25 @@ if st.button("文法解析を実行"):
     if not text.strip():
         st.warning("英文を入力してください。")
     else:
-        try:
-            nlp = spacy.load("en_core_web_sm")
-        except:
-            st.error("SpaCyモデルが読み込めません。requirements.txtに `en_core_web_sm` を追加してください。")
+import streamlit as st
+import subprocess
+import sys
 
-        doc = nlp(text)
+# SpaCyのモデルがなければインストール（Streamlit Cloud対応）
+try:
+    import spacy
+except ImportError:
+    subprocess.run([sys.executable, "-m", "pip", "install", "spacy==3.5.3"])
+    import spacy
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except:
+    subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
+
+import pandas as pd
+
 
         import pandas as pd  # ←ファイルの一番上に import 済みなら不要
 
