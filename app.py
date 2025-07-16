@@ -1,5 +1,14 @@
 import streamlit as st
 import spacy
+st.title("英文テキスト文法解析アプリ")
+
+st.markdown("""
+このアプリでは、英文テキストを透視的かつ文法的に詳細に分析することができます。  
+たとえば、名詞・動詞・前置詞・構文構造などの文法情報を自動で抽出し、可視化します。  
+**対応予定：カラマーゾフの兄弟、哲学論文、学術英文、など。**
+""")
+
+st.markdown("---")  # 区切り線（任意）
 
 st.set_page_config(page_title="英文法解析", layout="centered")
 
