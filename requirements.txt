@@ -1,4 +1,4 @@
 requirements.txt
 streamlit
-spacy
 pandas
+spacy==3.7.2
